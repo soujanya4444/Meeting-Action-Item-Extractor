@@ -1,6 +1,1 @@
 Flask>=3.0
-
-# --- Optional, only needed for the extra pieces described in the README ---
-# openai>=1.0          # for llm_extractor.py (OpenAI mode) and transcribe.py (API mode)
-# cohere>=5.0           # for llm_extractor.py (Cohere mode)
-# openai-whisper         # for transcribe.py (local mode) - also needs ffmpeg installed
