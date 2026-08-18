@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meeting → Action Items</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="app">
+  <header class="app-header">
+    <div class="title-block">
+      <h1>Meeting <span class="arrow">→</span> Action Items</h1>
+      <p class="subtitle">Paste a meeting transcript. Get owners, deadlines, and priorities out the other side.</p>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel input-panel">
+      <div class="panel-header">
+        <h2>1. Transcript</h2>
+        <button id="loadSampleBtn" class="link-btn">Load sample transcript</button>
+      </div>
+
+      <label class="field-label" for="meetingDate">Meeting date (used to resolve "next week", "Friday", etc.)</label>
+      <input type="date" id="meetingDate" class="date-input">
+
+      <textarea id="transcriptInput" placeholder="Sarah: I'll send the updated deck to the client by Friday.
+James: We should also schedule a follow-up call next week.
+Priya: Can you review the API docs? It's kind of urgent, we're blocked."></textarea>
+
+      <button id="extractBtn" class="primary-btn">
+        <span id="btnText">Extract action items</span>
+      </button>
+      <p id="errorMsg" class="error-msg"></p>
+    </section>
+
+    <section class="panel output-panel">
+      <div class="panel-header">
+        <h2>2. Action Items</h2>
+        <span id="itemCount" class="item-count"></span>
+      </div>
+
+      <div id="emptyState" class="empty-state">
+        <p>Extracted action items will show up here.</p>
+      </div>
+
+      <div id="tableWrapper" class="table-wrapper hidden">
+        <table id="resultsTable">
+          <thead>
+            <tr>
+              <th>Owner</th>
+              <th>Task</th>
+              <th>Deadline</th>
+              <th>Priority</th>
+            </tr>
+          </thead>
+          <tbody id="resultsBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>Rule-based extraction, runs 100% locally — no API key, no data leaves your machine.</p>
+  </footer>
+</div>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
